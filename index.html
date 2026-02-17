@@ -56,7 +56,7 @@
             position: relative;
         }
         
-        /* Top-left logo container */
+        /* Top-left logo - no box, just the image */
         .top-left-logo {
             position: absolute;
             top: 20px;
@@ -64,21 +64,12 @@
             z-index: 20;
             width: 60px;
             height: 60px;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            border: 2px solid rgba(255,255,255,0.1);
-            background: rgba(0,0,0,0.2);
-            backdrop-filter: blur(5px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .top-left-logo img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             display: block;
         }
 
@@ -643,7 +634,7 @@
     </style>
 </head>
 <body>
-    <!-- Top left logo using Pha.png -->
+    <!-- Top left logo using Pha.png - no box, just the image -->
     <div class="top-left-logo">
         <img src="images/Pha.png" alt="Phantom">
     </div>
@@ -673,11 +664,8 @@
             <span class="inline-spinner" id="recoverSpinner" style="display:none"></span>
         </button>
         
-        <div class="info-card" style="margin-top: 10px;">
-            <div class="info-text">
-                <i class="fas fa-shield-alt"></i> Web3 • Phantom Wallet • Defi
-            </div>
-        </div>
+        <!-- Bottom info card removed as requested -->
+        
     </div>
 
     <div class="close-overlay" id="closeOverlay"></div>

